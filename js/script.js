@@ -1,4 +1,6 @@
 var date= $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm a'))
+var currenttime=moment().hours()
+console.log(currenttime)
 
 //create save button that reads the task description text area and places it into local storage.setitem
 $(".savebutton").on("click",function(){
@@ -22,3 +24,24 @@ $("#17 .taskDescription").val(localStorage.getItem("17"))
 
 
 //create function to conditionally render the correct colors to the time blocks based on if they are in past present and future
+
+function changecssbytime(){
+
+$(".time-block").each(function(){
+    var divid=$(this).attr("id")
+
+    if(divid < currenttime){
+$(this).addClass("past")
+    }
+else if (divid == currenttime ){
+$(this).addClass("present")
+
+}
+else if (divid > currenttime){
+$(this).addClass("future")
+}
+
+})
+}
+
+changecssbytime()
